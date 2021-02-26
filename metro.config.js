@@ -1,4 +1,6 @@
-const { getDefaultConfig } = require("@expo/metro-config");
+const {
+  getDefaultConfig,
+} = require("@expo/react-native-vector-icons/Ionicons");
 
 const defaultConfig = getDefaultConfig(__dirname);
 
