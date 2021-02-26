@@ -1,4 +1,4 @@
-package com.sudokuar;
+package com.freeler.SudokuAR;
 
 import android.os.Bundle;
 
