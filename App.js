@@ -18,52 +18,66 @@ function cacheFonts(fonts) {
 }
 
 const App = () => {
-  useEffect(() => {
-    async function _loadAssetsAsync() {
-      const fontAssets = cacheFonts([Ionicons.font]);
-      console.log("a trec");
-      await Promise.all([...fontAssets]);
-    }
-    _loadAssetsAsync();
-  }, []);
+  const [isReady, setReady] = useState(false);
 
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        backBehavior="history"
-        activeColor="#0a7cff"
-        inactiveColor="gray"
-        barStyle={{ backgroundColor: "#97d2fb" }}
-      >
-        <Tab.Screen
-          name="Play"
-          component={PlayScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="play" color={color} size={24} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="AR Solver"
-          component={ARScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="barcode-outline" color={color} size={24} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="History"
-          component={HistoryScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="clipboard-outline" color={color} size={24} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+  if (isReady) {
+    return (
+      <NavigationContainer>
+        <Tab.Navigator
+          backBehavior="history"
+          activeColor="#0a7cff"
+          inactiveColor="gray"
+          barStyle={{ backgroundColor: "#97d2fb" }}
+        >
+          <Tab.Screen
+            name="Play"
+            component={PlayScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="play" color={color} size={24} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="AR Solver"
+            component={ARScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="barcode-outline" color={color} size={24} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="History"
+            component={HistoryScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="clipboard-outline" color={color} size={24} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
+  } else {
+    return (
+      <AppLoading
+        startAsync={loadResourcesAsync}
+        onError={handleLoadingError}
+        onFinish={() => handleFinishLoading(setReady)}
+      />
+    );
+  }
+
+  async function loadResourcesAsync() {
+    await Promise.all([Font.loadAsync({ ...Ionicons.font })]);
+  }
+
+  function handleLoadingError(error) {
+    console.warn(error);
+  }
+  function handleFinishLoading(setReady) {
+    setReady(true);
+  }
 };
 export default App;
