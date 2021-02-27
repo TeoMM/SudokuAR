@@ -1,41 +1,32 @@
-import * as React from "react";
-import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
-function HomeScreen() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Home!</Text>
-    </View>
-  );
-}
+import * as Font from "expo-font";
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Solve the puzzle!</Text>
-    </View>
-  );
-}
-function HistoryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>History!</Text>
-    </View>
-  );
-}
+import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+
+import ARScreen from "./components/ARScreen";
+import AppLoading from "expo-app-loading";
+import HistoryScreen from "./components/HistoryScreen";
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+import PlayScreen from "./components/PlayScreen";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Tab = createMaterialBottomTabNavigator();
 
+function cacheFonts(fonts) {
+  return fonts.map((font) => Font.loadAsync(font));
+}
+
 const App = () => {
+  useEffect(() => {
+    async function _loadAssetsAsync() {
+      const fontAssets = cacheFonts([Ionicons.font]);
+      console.log("a trec");
+      await Promise.all([...fontAssets]);
+    }
+    _loadAssetsAsync();
+  }, []);
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -46,7 +37,7 @@ const App = () => {
       >
         <Tab.Screen
           name="Play"
-          component={HomeScreen}
+          component={PlayScreen}
           options={{
             tabBarIcon: ({ color }) => (
               <Ionicons name="play" color={color} size={24} />
@@ -55,7 +46,7 @@ const App = () => {
         />
         <Tab.Screen
           name="AR Solver"
-          component={SettingsScreen}
+          component={ARScreen}
           options={{
             tabBarIcon: ({ color }) => (
               <Ionicons name="barcode-outline" color={color} size={24} />

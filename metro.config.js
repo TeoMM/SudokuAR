@@ -1,9 +1,7 @@
-const {
-  getDefaultConfig,
-} = require("@expo/react-native-vector-icons/Ionicons");
+const path = require("path");
 
-const defaultConfig = getDefaultConfig(__dirname);
-
-defaultConfig.resolver.assetExts.push("db");
-
-module.exports = defaultConfig;
+module.exports = {
+  transformer: {
+    assetPlugins: ["expo-asset/tools/hashAssetFiles"],
+  },
+};
