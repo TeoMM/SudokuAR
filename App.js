@@ -13,10 +13,6 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 
 const Tab = createMaterialBottomTabNavigator();
 
-function cacheFonts(fonts) {
-  return fonts.map((font) => Font.loadAsync(font));
-}
-
 const App = () => {
   const [isReady, setReady] = useState(false);
 
