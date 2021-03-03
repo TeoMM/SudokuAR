@@ -11,6 +11,9 @@
     "description": "",
     "android": {
       "package": "com.freeler.SudokuAR"
+    },
+    "ios": {
+      "bundleIdentifier": "com.freeler.SudokuAR"
     }
   }
 }

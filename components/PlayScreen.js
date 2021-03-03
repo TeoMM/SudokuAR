@@ -4,14 +4,7 @@ import { Text, View } from "react-native";
 
 function PlayScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Home!</Text>
     </View>
   );

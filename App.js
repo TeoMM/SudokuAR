@@ -21,32 +21,36 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator
           backBehavior="history"
-          activeColor="#0a7cff"
-          inactiveColor="gray"
-          barStyle={{ backgroundColor: "#97d2fb" }}
+          initialRouteName="Play"
+          activeColor="#071E22"
+          shifting={true}
         >
-          <Tab.Screen
-            name="Play"
-            component={PlayScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Ionicons name="play" color={color} size={24} />
-              ),
-            }}
-          />
           <Tab.Screen
             name="AR Solver"
             component={ARScreen}
             options={{
+              tabBarColor: "#1D7874",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="barcode-outline" color={color} size={24} />
               ),
             }}
           />
           <Tab.Screen
+            name="Play"
+            component={PlayScreen}
+            options={{
+              tabBarColor: "#02A171",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="play" color={color} size={24} />
+              ),
+            }}
+          />
+
+          <Tab.Screen
             name="History"
             component={HistoryScreen}
             options={{
+              tabBarColor: "#28A49E",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="clipboard-outline" color={color} size={24} />
               ),
