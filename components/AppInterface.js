@@ -5,6 +5,7 @@ import HistoryScreen from "./HistoryScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import PlayScreen from "./PlayScreen";
+import { StatusBar } from "expo-status-bar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -14,7 +15,7 @@ function AppInterface() {
     <NavigationContainer>
       <Tab.Navigator
         backBehavior="history"
-        initialRouteName="Play"
+        initialRouteName="AR Solver"
         activeColor="#071E22"
         shifting={true}
       >
@@ -50,6 +51,7 @@ function AppInterface() {
           }}
         />
       </Tab.Navigator>
+      <StatusBar style="inverted" />
     </NavigationContainer>
   );
 }
