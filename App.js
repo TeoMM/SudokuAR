@@ -1,7 +1,6 @@
 import * as Font from "expo-font";
 
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 
 import AppInterface from "./components/AppInterface";
 import AppLoading from "expo-app-loading";

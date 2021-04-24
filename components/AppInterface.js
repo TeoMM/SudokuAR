@@ -15,7 +15,7 @@ function AppInterface() {
     <NavigationContainer>
       <Tab.Navigator
         backBehavior="history"
-        initialRouteName="AR Solver"
+        initialRouteName="Play"
         activeColor="#071E22"
         shifting={true}
       >
@@ -24,9 +24,7 @@ function AppInterface() {
           component={ARScreen}
           options={{
             tabBarColor: "#1D7874",
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="barcode-outline" color={color} size={24} />
-            ),
+            tabBarIcon: ({ color }) => <Ionicons name="barcode-outline" color={color} size={24} />,
           }}
         />
         <Tab.Screen
@@ -34,9 +32,7 @@ function AppInterface() {
           component={PlayScreen}
           options={{
             tabBarColor: "#02A171",
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="play" color={color} size={24} />
-            ),
+            tabBarIcon: ({ color }) => <Ionicons name="play" color={color} size={24} />,
           }}
         />
 
