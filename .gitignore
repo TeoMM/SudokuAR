@@ -134,3 +134,4 @@ web-build/
 # @end expo-cli
 *.hprof
 scripts/sudoku.csv
+components/data/dataLarge.json
