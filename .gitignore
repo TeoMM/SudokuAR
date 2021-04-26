@@ -135,3 +135,5 @@ web-build/
 *.hprof
 scripts/sudoku.csv
 components/data/dataLarge.json
+
+components/data/dataLarge.json
