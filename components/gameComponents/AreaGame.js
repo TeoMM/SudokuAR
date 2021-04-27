@@ -3,9 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 export const AreaGame = (props) => {
+  const customData = require("../data/dataSmall.json");
   return (
     <View style={styles.area_game}>
-      <Text>Lol</Text>
+      <Text>{customData[1]["puzzle"]}</Text>
       <Text>Lol</Text>
       <Text>Lol</Text>
       <Text>Lol</Text>
