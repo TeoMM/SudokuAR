@@ -15,7 +15,7 @@ export const ButtonHelp = (props) => {
               ? "close-circle-outline"
               : props.action === "hint"
               ? "apps-outline"
-              : "apps-outline"
+              : ""
           }
           size={24}
         />
