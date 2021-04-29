@@ -5,7 +5,9 @@
     "name": "SudokuAR",
     "slug": "SudokuAR",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "description": "",
     "android": {
       "package": "com.freeler.SudokuAR"
