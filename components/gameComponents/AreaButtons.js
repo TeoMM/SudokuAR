@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     height: "15%",
+    marginTop: "10%",
   },
 });

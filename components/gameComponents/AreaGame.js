@@ -8,20 +8,25 @@ export const AreaGame = (props) => {
   const items = [];
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
-      items.push(<Cell key={[i, j]}></Cell>);
+      items.push(<Cell key={[i, j]} position={[i, j]}></Cell>);
     }
   }
-  return <View style={styles.area_game}>{items}</View>;
+  return (
+    <View style={styles.area_game}>
+      <Text style={styles.newgame}>New Game{"\n"}</Text>
+      {items}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   area_game: {
-    marginTop: "20%",
+    marginTop: "25%",
     alignItems: "center",
     width: "90%",
-    height: "75%",
-    backgroundColor: "red",
+    height: "65%",
     flexWrap: "wrap",
     flexDirection: "row",
   },
+  newgame: { width: "100%", textAlign: "center" },
 });

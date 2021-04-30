@@ -18,7 +18,7 @@ function ARScreen() {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>No access</Text>;
   }
   return (
     <View style={styles.container}>
