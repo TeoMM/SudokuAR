@@ -5,16 +5,16 @@ import React from "react";
 
 export const AreaGame = (props) => {
   const customData = require("../data/dataSmall.json");
-  const items = [];
+  const cells = [];
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
-      items.push(<Cell key={[i, j]} position={[i, j]}></Cell>);
+      cells.push(<Cell key={[i, j]} position={[i, j]}></Cell>);
     }
   }
   return (
     <View style={styles.area_game}>
       <Text style={styles.newgame}>New Game{"\n"}</Text>
-      {items}
+      {cells}
     </View>
   );
 };
