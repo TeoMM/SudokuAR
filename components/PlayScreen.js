@@ -1,15 +1,29 @@
 import * as React from "react";
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { AreaButtons } from "./gameComponents/AreaButtons";
 import { AreaGame } from "./gameComponents/AreaGame";
+import { SudokuProvider } from "./gameComponents/GameContext";
 
 function PlayScreen() {
   return (
     <View style={styles.screen}>
-      <AreaGame style={styles.board} />
-      <AreaButtons style={styles.buttons} onPress={(number) => console.log(number)} />
+      <SudokuProvider>
+        <AreaGame
+          style={styles.board}
+          onPress={(position) => {
+            console.log(position);
+          }}
+        />
+        <AreaButtons
+          style={styles.buttons}
+          onPressNumber={(number) => console.log(number)}
+          onPressUndo={() => console.log("undo")}
+          onPressErase={() => console.log("erase")}
+          onPressSolve={() => console.log("solve")}
+        />
+      </SudokuProvider>
     </View>
   );
 }

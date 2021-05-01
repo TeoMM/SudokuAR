@@ -13,7 +13,7 @@ export const ButtonHelp = (props) => {
               ? "arrow-undo-circle-outline"
               : props.action === "erase"
               ? "close-circle-outline"
-              : props.action === "hint"
+              : props.action === "solve"
               ? "apps-outline"
               : ""
           }
@@ -24,8 +24,8 @@ export const ButtonHelp = (props) => {
             ? "Undo"
             : props.action === "erase"
             ? "Erase"
-            : props.action === "hint"
-            ? "Hint"
+            : props.action === "solve"
+            ? "Solve"
             : ""}
         </Text>
       </TouchableOpacity>

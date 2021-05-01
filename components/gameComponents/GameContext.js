@@ -12,7 +12,7 @@ const GameContext = createContext([
   moment(), // timeCounter
   () => {},
 
-  -1, //cellSelected
+  [-1, -1], //cellSelected
   () => {},
 
   [], //initSudokuArray
@@ -26,7 +26,7 @@ export const SudokuProvider = ({ children }) => {
   let [numberSelected, setNumberSelected] = useState("0");
   let [sudokuArray, setSudokuArray] = useState([]);
   let [timeCounter, setTimeCounter] = useState(moment());
-  let [cellSelected, setCellSelected] = useState(-1);
+  let [cellSelected, setCellSelected] = useState([-1, -1]);
   let [initSudokuArray, setInitSudokuArray] = useState([]);
   let [won, setWon] = useState(false);
 

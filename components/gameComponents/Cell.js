@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import React from "react";
+import { useGameContext } from "./GameContext";
 
 export const Cell = (props) => {
   const computeStyle = () => {
@@ -19,10 +20,13 @@ export const Cell = (props) => {
       return styles.inner_cell;
     }
   };
+  function handlePress() {
+    props.onPress(props.position);
+  }
 
   return (
     <View style={styles.cell}>
-      <TouchableOpacity style={computeStyle()}>
+      <TouchableOpacity style={computeStyle()} onPress={handlePress}>
         <Text style={styles.cell_text}>{props.position[1]}</Text>
       </TouchableOpacity>
     </View>

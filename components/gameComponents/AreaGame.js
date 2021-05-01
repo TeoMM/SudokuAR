@@ -2,13 +2,23 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { Cell } from "./Cell";
 import React from "react";
+import { useGameContext } from "./GameContext";
 
 export const AreaGame = (props) => {
   const customData = require("../data/dataSmall.json");
+
   const cells = [];
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
-      cells.push(<Cell key={[i, j]} position={[i, j]}></Cell>);
+      cells.push(
+        <Cell
+          key={[i, j]}
+          position={[i, j]}
+          onPress={(position) => {
+            props.onPress(position);
+          }}
+        ></Cell>
+      );
     }
   }
   return (
