@@ -2,11 +2,21 @@ import React, { createContext, useContext, useState } from "react";
 
 import moment from "moment";
 
-const GameContext = createContext([
+export const GameContext = createContext([
   "0", // numberSelected
   () => {},
 
-  [], //sudokuArray
+  [
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+  ], //sudokuArray
   () => {},
 
   moment(), // timeCounter
@@ -15,7 +25,7 @@ const GameContext = createContext([
   [-1, -1], //cellSelected
   () => {},
 
-  [], //initSudokuArray
+  [], //initSudoku
   () => {},
 
   false, // won
@@ -24,10 +34,20 @@ const GameContext = createContext([
 
 export const SudokuProvider = ({ children }) => {
   let [numberSelected, setNumberSelected] = useState("0");
-  let [sudokuArray, setSudokuArray] = useState([]);
+  let [sudokuArray, setSudokuArray] = useState([
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+  ]);
   let [timeCounter, setTimeCounter] = useState(moment());
   let [cellSelected, setCellSelected] = useState([-1, -1]);
-  let [initSudokuArray, setInitSudokuArray] = useState([]);
+  let [initSudoku, setInitSudoku] = useState([]);
   let [won, setWon] = useState(false);
 
   return (
@@ -41,8 +61,8 @@ export const SudokuProvider = ({ children }) => {
         setTimeCounter,
         cellSelected,
         setCellSelected,
-        initSudokuArray,
-        setInitSudokuArray,
+        initSudoku,
+        setInitSudoku,
         won,
         setWon,
       }}

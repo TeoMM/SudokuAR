@@ -1,17 +1,14 @@
-function solveSudoku(puzzle) {
-  let solvedPuzzle = puzzle;
-
+export function solveSudoku(puzzle) {
   depthFirstSearch(0, 0);
-
   function depthFirstSearch(row, column) {
     if (row === 9) return true;
     if (column === 9) return depthFirstSearch(row + 1, 0);
-    if (puzzle[row][column] === ".") {
+    if (puzzle[row][column] === "0") {
       for (let input = 1; input <= 9; input++) {
-        if (isTileValid(row, column, `${input}`)) {
+        if (isValid(row, column, `${input}`)) {
           puzzle[row][column] = `${input}`;
           if (depthFirstSearch(row, column + 1)) return true;
-          puzzle[row][column] = ".";
+          puzzle[row][column] = "0";
         }
       }
     } else {
@@ -19,7 +16,7 @@ function solveSudoku(puzzle) {
     }
     return false;
   }
-  function isTileValid(row, column, input) {
+  function isValid(row, column, input) {
     if (isRowValid(column, input) == false) return false;
     if (isColumnValid(row, input) == false) return false;
     if (isBoxValid(row, column, input) == false) return false;

@@ -5,12 +5,17 @@ import React, { useEffect, useState } from "react";
 import AppInterface from "./components/AppInterface";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
+import { SudokuProvider } from "./components/gameComponents/GameContext";
 
 const App = () => {
   const [isReady, setReady] = useState(false);
 
   if (isReady) {
-    return <AppInterface />;
+    return (
+      <SudokuProvider>
+        <AppInterface />
+      </SudokuProvider>
+    );
   } else {
     return (
       <AppLoading
