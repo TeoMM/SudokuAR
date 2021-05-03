@@ -5,7 +5,7 @@ import React from "react";
 import { useGameContext } from "./GameContext";
 
 export const AreaGame = (props) => {
-  let { sudokuArray, initSudoku } = useGameContext();
+  let { sudokuArray } = useGameContext();
   const cells = [];
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
@@ -23,8 +23,8 @@ export const AreaGame = (props) => {
   }
   return (
     <View style={styles.area_game}>
-      <TouchableOpacity style={styles.newgame_area}>
-        <Text style={styles.newgame}>New Game{"\n"}</Text>
+      <TouchableOpacity style={styles.newgame_area} onPress={props.onPressNewGame}>
+        <Text style={styles.newgame_text}>New Game{"\n"}</Text>
       </TouchableOpacity>
       {cells}
     </View>
@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
   },
-  newgame: { width: "100%", textAlign: "center" },
-  newgame_area: { marginHorizontal: "40%" },
+  newgame_text: {
+    width: "100%",
+    textAlign: "center",
+    color: "darkblue",
+    fontWeight: "bold",
+  },
+  newgame_area: { marginHorizontal: "38%" },
 });

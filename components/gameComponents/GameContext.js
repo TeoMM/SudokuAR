@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 import moment from "moment";
 
-export const GameContext = createContext([
+const GameContext = createContext([
   "0", // numberSelected
   () => {},
 
@@ -22,7 +22,7 @@ export const GameContext = createContext([
   moment(), // timeCounter
   () => {},
 
-  [-1, -1], //cellSelected
+  [0, 0] + 1, //cellSelected
   () => {},
 
   [], //initSudoku
@@ -46,7 +46,7 @@ export const SudokuProvider = ({ children }) => {
     ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
   ]);
   let [timeCounter, setTimeCounter] = useState(moment());
-  let [cellSelected, setCellSelected] = useState([-1, -1]);
+  let [cellSelected, setCellSelected] = useState([0, 0] + 1);
   let [initSudoku, setInitSudoku] = useState([]);
   let [won, setWon] = useState(false);
 

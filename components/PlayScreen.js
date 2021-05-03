@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { AreaButtons } from "./gameComponents/AreaButtons";
@@ -17,45 +17,62 @@ function PlayScreen() {
     setSudokuArray,
     cellSelected,
     setCellSelected,
-    initSudoku,
-    setInitSudoku,
+    won,
     setWon,
   } = useGameContext();
 
   let [history, setHistory] = useState([]);
   let [solvedArray, setSolvedArray] = useState([]);
+  let [puzzle, setPuzzle] = useState([]);
   let puzzlesJSON = require("./data/dataSmall.json");
 
   function newGame() {
     puzzlesJSON = require("./data/dataSmall.json");
     let data = puzzlesJSON[Math.floor(Math.random() * puzzlesJSON.length)];
-    let puzzle = data.puzzle;
-    puzzle = normalizeToArray(puzzle);
-    setInitSudoku(puzzle);
-    setSudokuArray(puzzle);
-    setHistory([]);
+    setPuzzle(normalizeToArray(data.puzzle));
+    setSudokuArray(normalizeToArray(data.puzzle));
+    setHistory([normalizeToArray(data.puzzle)]);
     setWon(false);
   }
   function onPressCell(position) {
     setCellSelected(position);
   }
-  function onPressUndo() {}
-  function onPressErase() {}
-  function onPressSolve() {}
+  function onPressUndo() {
+    if (history.length) {
+      let auxHistory = [...history];
+      let auxArr = auxHistory.pop();
+      setHistory(auxHistory);
+      setSudokuArray(auxArr);
+    }
+  }
+  function onPressErase() {
+    if (sudokuArray[cellSelected[0]][cellSelected[1]] !== "0") {
+      setCell(cellSelected, "0");
+    }
+  }
+  function onPressSolve() {
+    let auxSudokuArray = [...puzzle];
+    solveSudoku(auxSudokuArray);
+    setSudokuArray(auxSudokuArray);
+    setWon(true);
+    setCellSelected(cellSelected + 1);
+  }
   function onPressNumber(number) {
     setCell(cellSelected, number);
   }
 
   function setCell(position, number) {
-    if (initSudoku[position[0]][position[1]] === "0") {
-      console.log("ad");
-      let auxSudokuArray = sudokuArray;
-      let auxHistory = history;
+    if (puzzle[position[0]][position[1]] == "0") {
+      let auxSudokuArray = [...sudokuArray];
+      let auxHistory = [...history];
+
       auxHistory.push(auxSudokuArray);
       setHistory(auxHistory);
+
       auxSudokuArray[position[0]][position[1]] = number;
       setSudokuArray(auxSudokuArray);
-      console.log(history);
+
+      setCellSelected(position + 1);
     }
   }
 
@@ -63,23 +80,38 @@ function PlayScreen() {
     newGame();
   }, []);
 
-  return (
-    <View style={styles.screen}>
-      <AreaGame
-        style={styles.board}
-        onPress={(position) => {
-          onPressCell(position);
-        }}
-      />
-      <AreaButtons
-        style={styles.buttons}
-        onPressNumber={(number) => onPressNumber(number)}
-        onPressUndo={() => console.log("undo")}
-        onPressErase={() => console.log(sudokuArray)}
-        onPressSolve={() => console.log("solve")}
-      />
-    </View>
-  );
+  if (!won)
+    return (
+      <View style={styles.screen}>
+        <AreaGame
+          style={styles.board}
+          onPress={(position) => {
+            onPressCell(position);
+          }}
+          onPressNewGame={newGame}
+        />
+        <AreaButtons
+          style={styles.buttons}
+          onPressNumber={(number) => onPressNumber(number)}
+          onPressUndo={onPressUndo}
+          onPressErase={onPressErase}
+          onPressSolve={onPressSolve}
+        />
+      </View>
+    );
+  else
+    return (
+      <View style={styles.screen}>
+        <AreaGame
+          style={styles.board}
+          onPress={(position) => {
+            onPressCell(position);
+          }}
+          onPressNewGame={newGame}
+        />
+        <Text>YOU SOLVED IT!</Text>
+      </View>
+    );
 }
 
 export default PlayScreen;

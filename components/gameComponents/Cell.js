@@ -1,10 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import React from "react";
+import { useEffect } from "react";
 import { useGameContext } from "./GameContext";
 
 export const Cell = (props) => {
-  let { cellSelected } = useGameContext();
+  let { cellSelected, sudokuArray } = useGameContext();
+
   const computeStyle = () => {
     let result = [];
     if (
