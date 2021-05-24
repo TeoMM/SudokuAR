@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-
 import ARScreen from "./ARScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import PlayScreen from "./PlayScreen";
+import React from "react";
 import { StatusBar } from "expo-status-bar";
 import TextScreen from "./TextScreen";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";

@@ -22,7 +22,7 @@ function PlayScreen() {
   } = useGameContext();
 
   let [history, setHistory] = useState([]);
-  let [solvedArray, setSolvedArray] = useState([]);
+  let [solvedArray, setSolvedArray] = useState([]); // used for isSolved
   let [puzzle, setPuzzle] = useState([]);
   let puzzlesJSON = require("./data/dataSmall.json");
 
